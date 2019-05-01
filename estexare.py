@@ -16,19 +16,29 @@ except Error as e:
     print(e)
     sys.exit(e)
 
+conn.row_factory = sqlite3.Row
 cur = conn.cursor()
 
 
 MAX_ESTEXARE_NO = 181
-
 estexare_no = random.randint(1,MAX_ESTEXARE_NO)
 select_estexare_query = f"""
     select * from estexare
     where rowid = {estexare_no}
     """
+print(select_estexare_query)
 
 cur.execute(select_estexare_query) #, tuple(str(estexare_no)))
 
 estexare_row = cur.fetchone()
-print(estexare_row, "\n\n")
-print(f"{estexare_row[4]}")
+print(estexare_row)
+for i in estexare_row:
+    print(i)
+    
+# print(f"{estexare_row[0]}")
+# print('')
+
+# rows = cur.fetchall()
+# for row in rows:
+#     print(row['sure_no'])
+# sys.exit()
