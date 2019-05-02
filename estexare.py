@@ -17,13 +17,14 @@ except Error as e:
 conn.row_factory = sqlite3.Row
 cur = conn.cursor()
 
+# Number of records of db.
 MAX_ESTEXARE_NO = 181
 estexare_no = random.randint(1, MAX_ESTEXARE_NO)
 select_estexare_query = f"""
     select * from estexare
-    where rowid = {estexare_no}
+    where rowid = ?
     """
-cur.execute(select_estexare_query)  # , tuple(str(estexare_no)))
+cur.execute(select_estexare_query, (estexare_no,))
 
 estexare_row = cur.fetchone()
 
@@ -42,7 +43,8 @@ if '-l' in sys.argv:
 print(estexare_row[lang + '_result'])
 if '-f' in sys.argv:
     print(f'{estexare_row[lang + "_comment"]}\n')
-    print(f"Sure: {estexare_row['sure']} ({estexare_row['sure_no']}),", end=" ")
+    print(
+        f"Sure: {estexare_row['sure']} ({estexare_row['sure_no']}),", end=" ")
     print(f"Aye: {estexare_row['aye_no']}")
     print(estexare_row['aye'])
 elif '-c' in sys.argv:
