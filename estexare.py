@@ -57,5 +57,6 @@ while again:
     again_input = input('\nAgain [y/N]: ')
     again_input = again_input.lstrip().lower()
     again = len(again_input) > 0 and again_input[0] == 'y'
+    print()
 
 print('bye')
