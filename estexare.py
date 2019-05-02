@@ -6,8 +6,9 @@ import sys
 import random
 import sqlite3
 from sqlite3 import Error
+import os
 
-db = "./db.db"
+db = f"{os.path.dirname(os.path.realpath(__file__))}/db.db"
 try:
     conn = sqlite3.connect(db)
 except Error as e:
