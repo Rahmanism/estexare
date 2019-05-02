@@ -28,16 +28,10 @@ cur.execute(select_estexare_query)  # , tuple(str(estexare_no)))
 estexare_row = cur.fetchone()
 print(estexare_row['fi_result'])
 
-if '-c' in sys.argv:
-    print('yes')
-
-# for i in estexare_row:
-#     print(i)
-
-# print(f"{estexare_row[0]}")
-# print('')
-
-# rows = cur.fetchall()
-# for row in rows:
-#     print(row['sure_no'])
-# sys.exit()
+if '-f' in sys.argv:
+    print(f'{estexare_row["fi_comment"]}\n')
+    print(f"Sure: {estexare_row['sure']} ({estexare_row['sure_no']}),", end=" ")
+    print(f"Aye: {estexare_row['aye_no']}")
+    print(estexare_row['aye'])
+elif '-c' in sys.argv:
+    print(f'{estexare_row["fi_comment"]}')
