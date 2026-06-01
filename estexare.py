@@ -54,9 +54,14 @@ while again:
     elif '-c' in sys.argv:
         print(f'{estexare_row[lang + "_comment"]}')
 
-    again_input = input('\nAgain [y/N]: ')
-    again_input = again_input.lstrip().lower()
-    again = len(again_input) > 0 and again_input[0] == 'y'
+    # If there's -1 in command arguemts we don't ask for a new estaxre and close the program.
+    should_ask_for_again = False if '-1' in sys.argv else True
+    if should_ask_for_again:
+        again_input = input('\nAgain [y/N]: ')
+        again_input = again_input.lstrip().lower()
+        again = len(again_input) > 0 and again_input[0] == 'y'
+    else:
+        again = False
     print()
 
 print('bye')
