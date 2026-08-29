@@ -54,7 +54,12 @@ while again:
     elif '-c' in sys.argv:
         print(f'{estexare_row[lang + "_comment"]}')
 
-    again_input = input('\nAgain [y/N]: ')
+    if sys.stdin.isatty():
+      again_input = input('\nAgain [y/N]: ')
+    else:
+      # Means it's not an interactive mode enabled, so there'll be no input.
+      again_input = 'n'
+
     again_input = again_input.lstrip().lower()
     again = len(again_input) > 0 and again_input[0] == 'y'
     print()
