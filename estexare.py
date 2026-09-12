@@ -55,7 +55,11 @@ while again:
         print(f'{estexare_row[lang + "_comment"]}')
 
     if sys.stdin.isatty():
-      again_input = input('\nAgain [y/N]: ')
+        try:
+          again_input = input('\nAgain [y/N]: ')
+        except:
+            # Means the interactive mode has a problem, so there'll be no input.
+            again_input = 'n'
     else:
       # Means it's not an interactive mode enabled, so there'll be no input.
       again_input = 'n'
